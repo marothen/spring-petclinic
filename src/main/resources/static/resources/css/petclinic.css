@@ -7930,7 +7930,7 @@ strong {
   border-right: 0; }
 
 .navbar a.navbar-brand {
-  background: url("../images/spring-logo-dataflow.png") -1px -1px no-repeat;
+  background: url("../images/cr1.jpg") -1px -1px no-repeat;
   margin: 12px 0 6px;
   width: 229px;
   height: 46px;
@@ -7942,7 +7942,7 @@ strong {
   display: block;
   width: 229px;
   height: 46px;
-  background: url("../images/spring-logo-dataflow.png") -1px -48px no-repeat;
+  background: url("../images/cr1.jpg") -1px -48px no-repeat;
   opacity: 0;
   -moz-transition: opacity 0.12s ease-in-out;
   -webkit-transition: opacity 0.12s ease-in-out;
@@ -8007,6 +8007,7 @@ strong {
     margin-bottom: 30px; }
   .index-page--subtitle {
     margin-top: 10px;
-    margin-bottom: 30px; } }
+    margin-bottom: 30px; }
+}
 
 /*# sourceMappingURL=../../../../../../target/petclinic.css.map */

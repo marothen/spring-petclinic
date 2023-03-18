@@ -24,9 +24,9 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark" role="navigation" style="width:1310px">
     <div class="container-fluid">
-      <a class="navbar-brand" th:href="@{/}"><span></span></a>
+      <!--<a class="navbar-brand" th:href="@{/}"><span></span></a> -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,25 +45,9 @@
 
         <ul class="nav navbar-nav me-auto">
 
-          <li th:replace="::menuItem ('/','home','home page','home','Home')">
-            <span class="fa fa-home" aria-hidden="true"></span>
-            <span>Home</span>
-          </li>
-
-          <li th:replace="::menuItem ('/owners/find','owners','find owners','search','Find owners')">
-            <span class="fa fa-search" aria-hidden="true"></span>
-            <span>Find owners</span>
-          </li>
-
-          <li th:replace="::menuItem ('/vets.html','vets','veterinarians','th-list','Veterinarians')">
+          <li th:replace="::menuItem ('/search','clans','clans','th-list','Clansuche')">
             <span class="fa fa-th-list" aria-hidden="true"></span>
             <span>Veterinarians</span>
-          </li>
-
-          <li
-            th:replace="::menuItem ('/oups','error','trigger a RuntimeException to see how it is handled','exclamation-triangle','Error')">
-            <span class="fa exclamation-triangle" aria-hidden="true"></span>
-            <span>Error</span>
           </li>
 
         </ul>
@@ -76,14 +60,6 @@
       <th:block th:include="${template}" />
 
       <br />
-      <br />
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center">
-            <img src="../static/resources/images/spring-pivotal-logo.png"
-              th:src="@{/resources/images/spring-pivotal-logo.png}" alt="Sponsored by Pivotal" /></div>
-        </div>
-      </div>
     </div>
   </div>
 

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:text-align="http://www.w3.org/1999/xhtml"> -->
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
+<body>
+<!--/*@thymesVar id="ranking" type="com.maro.clashroyale.domain.ClanRanking"*/-->
+
+    <h2 th:text="'Clan: ' + ${ranking.getClan().getName()}"></h2>
+    <h2 th:text="'Mitglieder: ' + ${ranking.getAllMembers().size()}"></h2>
+    <h2 th:text="'Neue Mitglieder: ' + ${ranking.getNewMembers().size()}"></h2>
+    <h2 th:text="'Zurückgekehrte Mitglieder: ' + ${ranking.getReenteredMembers().size()}"></h2>
+    <h2 th:text="'Degradierungen: ' + ${ranking.getDowngradeMembers().size()}"></h2>
+    <h2 th:text="'Beförderungen: ' + ${ranking.getUpgradeMembers().size()}"></h2>
+    </br>
+    <h2 th:text="'Clankrieg Modus: ' + ${ranking.getRiverRace().getState()}">Clan Deutsch</h2>
+    <h2 th:text="'Clanliste'">List of Clans</h2>
+    <div style="height: 300px; width: 1310px">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th style="text-align:left; width: 200px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Clans">Name</th>
+            <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Clanpokale">Pokale</th>
+            <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Mitgliederanzahl">Mitglieder</th>
+            <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Punkte</th>
+            <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnittliche Wochepunkte/Mitglied">Punkte/Mitglied</th>
+          <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Stärke eines durchschnittlichen Mitglieds im Vergleich zum betrachteten Clan">Mitgliederstärke</th>
+            <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Stärke des Clans im Vergleich zum betrachteten Clan">Clanstärke</th>
+          <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Gespielte Kämpfe/mögliche Kämpfe">Kämpfe</th>
+          <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Angriffe auf gegnerische Boote">Bootangriffe</th>
+            <th style="text-align:left; width: 200px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Ziellinie erreicht">Beendet</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="clan:${ranking.getClans()}"}>
+            <td><a th:href="@{'/ranking?clanTag='+ ${clan?.getTag()}}" th:text="${clan.getName}">Link to Clan</a></td>
+            <td th:text="${clan?.getClanScore()}">Deutsch</td>
+            <td th:text="${clan?.getMembers()}">Deutsch</td>
+            <td th:text="${clan?.getFame()}">555</td>
+            <td th:text="${clan?.getClanAverage()}">555</td>
+          <td th:text="${clan?.getMemberStrength()}">555</td>
+            <td th:text="${clan?.getStrength()}">555</td>
+          <td th:text="${clan?.getDecksUsedToday()} + '/' + ${clan?.getPossibleDecksToday()}">555</td>
+          <td th:text="${clan?.getBoatAttacks()}">555</td>
+            <td th:text="${clan?.getFinishTime()}">555</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    </br>
+    <h2 th:text="'Mitglieder nach Punktezahl: ' + ${ranking.getAllMembers().size()}"></h2>
+    <div style="overflow: scroll; height: 600px; width: 1310px">
+      <table class="table table-striped">
+          <thead>
+          <tr>
+              <th style="text-align:left; width: 150px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Mitglieds">Name</th>
+              <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Rolle des Mitglieds">Rolle</th>
+              <th style="text-align:left; width: 50px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Abwesenheitstage">Abwesend</th>
+              <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte">Durchschnitt</th>
+              <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Aktuell</th>
+              <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Differenz zu den durschnittlich erreichten Wochenpunkten">Differenz</th>
+              <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Prozentualer Anteil an den durchschnittlich erreichten Wochenpunkten">Erreicht</th>
+              <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der gespielten Kämpfe heute/während der Woche">Kämpfe</th>
+              <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Angriffe auf feindliche Boote">Boot</th>
+              <th style="text-align:left; width: 1000px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Erreichte Wochenpunkte der vergangenen 10 Wochen">Vergangene Wochen</th>
+          </tr>
+          </thead>
+
+
+
+          <tbody>
+          <tr th:each="member:${ranking.getAverageMembers()}"}>
+              <td><a th:href="@{'/player?memberTag='+ ${member.getTag()}}" th:text="${member.getName()}">Link to member</a></td>
+              <td th:text="${member?.getRole()}">coleader</td>
+              <td th:text="${member?.getDayNotSeen()}">1,2,3</td>
+              <td th:text="${member?.getAverage()}">3000</td>
+              <td th:text="${member?.getCurrentPoints()}">3000</td>
+              <td th:text="${member?.getDifference()}">3000</td>
+              <td th:text="${member?.getPercent()} + ' %'">3000</td>
+              <td th:text="${member?.getDecksUsedToday()} + '/' + ${member?.getDecksUsed()}">3000</td>
+              <td th:text="${member?.getBoatAttacks()}">3000</td>
+              <td th:text="${member?.getPoints()}">1,2,3</td>
+          </tr>
+          </tbody>
+      </table>
+    </div>
+</br>
+<h2 th:text="'Neue Mitglieder: ' + ${ranking.getNewMembers().size()}">List of new Members</h2>
+<div style="overflow: scroll; height: 200px; width: 1310px">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th style="text-align:left; width: 150px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Mitglieds">Name</th>
+      <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Rolle des Mitglieds">Rolle</th>
+      <th style="text-align:left; width: 50px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Abwesenheitstage">Abwesend</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte">Durchschnitt</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Aktuell</th>
+      <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Differenz zu den durschnittlich erreichten Wochenpunkten">Differenz</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Prozentualer Anteil an den durchschnittlich erreichten Wochenpunkten">Erreicht</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der gespielten Kämpfe heute/während der Woche">Kämpfe</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Angriffe auf feindliche Boote">Boot</th>
+      <th style="text-align:left; width: 1000px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Erreichte Wochenpunkte der vergangenen 10 Wochen">Vergangene Wochen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="member:${ranking.getNewMembers()}"}>
+        <td><a th:href="@{'/player?memberTag='+ ${member.getTag()}}" th:text="${member.getName()}">Link to Clan</a></td>
+        <td th:text="${member?.getRole()}">coleader</td>
+        <td th:text="${member?.getDayNotSeen()}">1,2,3</td>
+        <td th:text="${member?.getAverage()}">3000</td>
+        <td th:text="${member?.getCurrentPoints()}">3000</td>
+        <td th:text="${member?.getDifference()}">3000</td>
+        <td th:text="${member?.getPercent()} + ' %'">3000</td>
+        <td th:text="${member?.getDecksUsedToday()} + '/' + ${member?.getDecksUsed()}">3000</td>
+        <td th:text="${member?.getBoatAttacks()}">3000</td>
+        <td th:text="${member?.getPoints()}">1,2,3</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+
+
+</br>
+<h2 th:text="'Zurückgekehrte Mitglieder: ' + ${ranking.getReenteredMembers().size()}"></h2>
+<div style="overflow: scroll; height: 200px; width: 1310px">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th style="text-align:left; width: 150px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Mitglieds">Name</th>
+      <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Rolle des Mitglieds">Rolle</th>
+      <th style="text-align:left; width: 50px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Abwesenheitstage">Abwesend</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte">Durchschnitt</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Aktuell</th>
+      <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Differenz zu den durschnittlich erreichten Wochenpunkten">Differenz</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Prozentualer Anteil an den durchschnittlich erreichten Wochenpunkten">Erreicht</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der gespielten Kämpfe heute/während der Woche">Kämpfe</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Angriffe auf feindliche Boote">Boot</th>
+      <th style="text-align:left; width: 1000px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Erreichte Wochenpunkte der vergangenen 10 Wochen">Vergangene Wochen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="member:${ranking.getReenteredMembers()}"}>
+      <td><a th:href="@{'/player?memberTag='+ ${member.getTag()}}" th:text="${member.getName()}">Link to Clan</a></td>
+      <td th:text="${member?.getRole()}">coleader</td>
+      <td th:text="${member?.getDayNotSeen()}">1,2,3</td>
+      <td th:text="${member?.getAverage()}">3000</td>
+      <td th:text="${member?.getCurrentPoints()}">3000</td>
+      <td th:text="${member?.getDifference()}">3000</td>
+      <td th:text="${member?.getPercent()} + ' %'">3000</td>
+      <td th:text="${member?.getDecksUsedToday()} + '/' + ${member?.getDecksUsed()}">3000</td>
+      <td th:text="${member?.getBoatAttacks()}">3000</td>
+      <td th:text="${member?.getPoints()}">1,2,3</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</br>
+  <h2 th:text="'Degradierungen: ' + ${ranking.getDowngradeMembers().size()}"></h2>
+  <div style="overflow: scroll; height: 200px; width: 1310px">
+  <table class="table table-striped">
+        <thead>
+        <tr>
+          <th style="text-align:left; width: 150px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Mitglieds">Name</th>
+          <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Rolle des Mitglieds">Rolle</th>
+          <th style="text-align:left; width: 50px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Abwesenheitstage">Abwesend</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte">Durchschnitt</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Aktuell</th>
+          <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Differenz zu den durschnittlich erreichten Wochenpunkten">Differenz</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Prozentualer Anteil an den durchschnittlich erreichten Wochenpunkten">Erreicht</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der gespielten Kämpfe heute/während der Woche">Kämpfe</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Angriffe auf feindliche Boote">Boot</th>
+          <th style="text-align:left; width: 1000px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Erreichte Wochenpunkte der vergangenen 10 Wochen">Vergangene Wochen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="member:${ranking.getDowngradeMembers()}"}>
+            <td><a th:href="@{'/player?memberTag='+ ${member.getTag()}}" th:text="${member.getName()}">Link to Clan</a></td>
+            <td th:text="${member?.getRole()}">coleader</td>
+            <td th:text="${member?.getDayNotSeen()}">1,2,3</td>
+            <td th:text="${member?.getAverage()}">3000</td>
+            <td th:text="${member?.getCurrentPoints()}">3000</td>
+            <td th:text="${member?.getDifference()}">3000</td>
+            <td th:text="${member?.getPercent()} + ' %'">3000</td>
+          <td th:text="${member?.getDecksUsedToday()} + '/' + ${member?.getDecksUsed()}">3000</td>
+          <td th:text="${member?.getBoatAttacks()}">3000</td>
+            <td th:text="${member?.getPoints()}">1,2,3</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</br>
+  <h2 th:text="'Beförderungen: ' + ${ranking.getUpgradeMembers().size()}"></h2>
+  <div style="overflow: scroll; height: 200px; width: 1310px">
+  <table class="table table-striped">
+        <thead>
+        <tr>
+          <th style="text-align:left; width: 150px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Mitglieds">Name</th>
+          <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Rolle des Mitglieds">Rolle</th>
+          <th style="text-align:left; width: 50px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Abwesenheitstage">Abwesend</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte">Durchschnitt</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Aktuell</th>
+          <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Differenz zu den durschnittlich erreichten Wochenpunkten">Differenz</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Prozentualer Anteil an den durchschnittlich erreichten Wochenpunkten">Erreicht</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der gespielten Kämpfe heute/während der Woche">Kämpfe</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Angriffe auf feindliche Boote">Boot</th>
+          <th style="text-align:left; width: 1000px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Erreichte Wochenpunkte der vergangenen 10 Wochen">Vergangene Wochen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="member:${ranking.getUpgradeMembers()}"}>
+            <td><a th:href="@{'/player?memberTag='+ ${member.getTag()}}" th:text="${member.getName()}">Link to Clan</a></td>
+            <td th:text="${member?.getRole()}">coleader</td>
+            <td th:text="${member?.getDayNotSeen()}">1,2,3</td>
+            <td th:text="${member?.getAverage()}">3000</td>
+            <td th:text="${member?.getCurrentPoints()}">3000</td>
+            <td th:text="${member?.getDifference()}">3000</td>
+            <td th:text="${member?.getPercent()} + ' %'">3000</td>
+          <td th:text="${member?.getDecksUsedToday()} + '/' + ${member?.getDecksUsed()}">3000</td>
+          <td th:text="${member?.getBoatAttacks()}">3000</td>
+            <td th:text="${member?.getPoints()}">1,2,3</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
