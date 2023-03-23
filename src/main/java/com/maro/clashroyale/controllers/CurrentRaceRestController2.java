@@ -174,7 +174,7 @@ public class CurrentRaceRestController2 {
 							 ) {
 							realPoints = realPoints + p.doubleValue();
 						}
-						entry.getValue().setRealAverage(realPoints/(entry.getValue().getCountablePoints().size()+1));
+						entry.getValue().setRealAverage(this.round(realPoints/(entry.getValue().getCountablePoints().size()+1)));
 
                     if (entry.getValue().getCountablePoints().size() > Constants.SAVE_WEEK_COUNT) {
                         for (int i = 0; i < Constants.AVTIVE_WEEK_COUNT; i++) {

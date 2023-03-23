@@ -55,7 +55,8 @@
               <th style="text-align:left; width: 150px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Mitglieds">Name</th>
               <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Rolle des Mitglieds">Rolle</th>
               <th style="text-align:left; width: 50px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Abwesenheitstage">Abwesend</th>
-              <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte">Durchschnitt</th>
+              <th style="text-align:left; width: 300px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte während der letzten 10 Wochen">Durchschnitt (10)</th>
+              <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte während aktiver Wochen">Durchschnitt</th>
               <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Aktuell</th>
               <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Differenz zu den durschnittlich erreichten Wochenpunkten">Differenz</th>
               <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Prozentualer Anteil an den durchschnittlich erreichten Wochenpunkten">Erreicht</th>
@@ -73,6 +74,7 @@
               <td th:text="${member?.getRole()}">coleader</td>
               <td th:text="${member?.getDayNotSeen()}">1,2,3</td>
               <td th:text="${member?.getAverage()}">3000</td>
+              <td th:text="${member?.getRealAverage()}">3000</td>
               <td th:text="${member?.getCurrentPoints()}">3000</td>
               <td th:text="${member?.getDifference()}">3000</td>
               <td th:text="${member?.getPercent()} + ' %'">3000</td>
@@ -92,7 +94,8 @@
       <th style="text-align:left; width: 150px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Mitglieds">Name</th>
       <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Rolle des Mitglieds">Rolle</th>
       <th style="text-align:left; width: 50px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Abwesenheitstage">Abwesend</th>
-      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte">Durchschnitt</th>
+      <th style="text-align:left; width: 300px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte während der letzten 10 Wochen">Durchschnitt (10)</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte während aktiver Wochen">Durchschnitt</th>
       <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Aktuell</th>
       <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Differenz zu den durschnittlich erreichten Wochenpunkten">Differenz</th>
       <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Prozentualer Anteil an den durchschnittlich erreichten Wochenpunkten">Erreicht</th>
@@ -107,6 +110,7 @@
         <td th:text="${member?.getRole()}">coleader</td>
         <td th:text="${member?.getDayNotSeen()}">1,2,3</td>
         <td th:text="${member?.getAverage()}">3000</td>
+        <td th:text="${member?.getRealAverage()}">3000</td>
         <td th:text="${member?.getCurrentPoints()}">3000</td>
         <td th:text="${member?.getDifference()}">3000</td>
         <td th:text="${member?.getPercent()} + ' %'">3000</td>
@@ -129,7 +133,8 @@
       <th style="text-align:left; width: 150px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Mitglieds">Name</th>
       <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Rolle des Mitglieds">Rolle</th>
       <th style="text-align:left; width: 50px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Abwesenheitstage">Abwesend</th>
-      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte">Durchschnitt</th>
+      <th style="text-align:left; width: 300px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte während der letzten 10 Wochen">Durchschnitt (10)</th>
+      <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte während aktiver Wochen">Durchschnitt</th>
       <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Aktuell</th>
       <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Differenz zu den durschnittlich erreichten Wochenpunkten">Differenz</th>
       <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Prozentualer Anteil an den durchschnittlich erreichten Wochenpunkten">Erreicht</th>
@@ -144,6 +149,7 @@
       <td th:text="${member?.getRole()}">coleader</td>
       <td th:text="${member?.getDayNotSeen()}">1,2,3</td>
       <td th:text="${member?.getAverage()}">3000</td>
+      <td th:text="${member?.getRealAverage()}">3000</td>
       <td th:text="${member?.getCurrentPoints()}">3000</td>
       <td th:text="${member?.getDifference()}">3000</td>
       <td th:text="${member?.getPercent()} + ' %'">3000</td>
@@ -163,7 +169,8 @@
           <th style="text-align:left; width: 150px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Mitglieds">Name</th>
           <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Rolle des Mitglieds">Rolle</th>
           <th style="text-align:left; width: 50px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Abwesenheitstage">Abwesend</th>
-          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte">Durchschnitt</th>
+          <th style="text-align:left; width: 300px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte während der letzten 10 Wochen">Durchschnitt (10)</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte während aktiver Wochen">Durchschnitt</th>
           <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Aktuell</th>
           <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Differenz zu den durschnittlich erreichten Wochenpunkten">Differenz</th>
           <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Prozentualer Anteil an den durchschnittlich erreichten Wochenpunkten">Erreicht</th>
@@ -178,6 +185,7 @@
             <td th:text="${member?.getRole()}">coleader</td>
             <td th:text="${member?.getDayNotSeen()}">1,2,3</td>
             <td th:text="${member?.getAverage()}">3000</td>
+            <td th:text="${member?.getRealAverage()}">3000</td>
             <td th:text="${member?.getCurrentPoints()}">3000</td>
             <td th:text="${member?.getDifference()}">3000</td>
             <td th:text="${member?.getPercent()} + ' %'">3000</td>
@@ -197,7 +205,8 @@
           <th style="text-align:left; width: 150px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Name des Mitglieds">Name</th>
           <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Rolle des Mitglieds">Rolle</th>
           <th style="text-align:left; width: 50px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Anzahl der Abwesenheitstage">Abwesend</th>
-          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte">Durchschnitt</th>
+          <th style="text-align:left; width: 300px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte während der letzten 10 Wochen">Durchschnitt (10)</th>
+          <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Durchschnitt der erreichten Wochenpunkte während aktiver Wochen">Durchschnitt</th>
           <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Aktuell erreichte Wochenpunkte">Aktuell</th>
           <th style="text-align:left; width: 100px;" data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Differenz zu den durschnittlich erreichten Wochenpunkten">Differenz</th>
           <th style="text-align:left; width: 100px;"  data-coreui-toggle="tooltip" data-coreui-placement="top" data-coreui-html="true" title="Prozentualer Anteil an den durchschnittlich erreichten Wochenpunkten">Erreicht</th>
@@ -212,6 +221,7 @@
             <td th:text="${member?.getRole()}">coleader</td>
             <td th:text="${member?.getDayNotSeen()}">1,2,3</td>
             <td th:text="${member?.getAverage()}">3000</td>
+            <td th:text="${member?.getRealAverage()}">3000</td>
             <td th:text="${member?.getCurrentPoints()}">3000</td>
             <td th:text="${member?.getDifference()}">3000</td>
             <td th:text="${member?.getPercent()} + ' %'">3000</td>
